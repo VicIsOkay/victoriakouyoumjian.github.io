@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria Kouyoumjian — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --text-dark: #1C1A17;
+    --text-mid: #4A4540;
+    --text-light: #8C8580;
+    --accent: #B5622A;
+    --accent-light: #E8D5C4;
+    --accent-pale: #F5EDE3;
+    --border: #E8E2D8;
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2rem 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #9E5223; transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PHOTO */
+  .hero-photo {
+    position: relative;
+  }
+
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--accent-light);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--accent);
+  }
+
+  .photo-placeholder svg { opacity: 0.4; }
+
+  .photo-placeholder p {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .photo-accent {
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 80%;
+    height: 80%;
+    border: 1.5px solid var(--accent-light);
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-body p {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem 1.5rem;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .work-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(181, 98, 42, 0.08);
+  }
+
+  .work-card-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-pale);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 2px;
+    align-self: flex-start;
+  }
+
+  .work-card-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--text-dark);
+  }
+
+  .work-card-meta {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .work-card-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 20px;
+    height: 20px;
+    color: var(--border);
+    transition: color 0.2s;
+  }
+
+  .work-card:hover .work-card-arrow { color: var(--accent); }
+
+  /* FEATURED */
+  .featured-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-card:hover { border-color: var(--accent); }
+
+  .featured-card-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .featured-card-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .featured-card-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  .featured-card-cta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* KEYNOTES LIST */
+  .keynotes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .keynote-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+  }
+
+  .keynote-item:first-child { border-top: 1px solid var(--border); }
+  .keynote-item:hover .keynote-title { color: var(--accent); }
+
+  .keynote-year {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-light);
+    min-width: 36px;
+  }
+
+  .keynote-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    transition: color 0.2s;
+  }
+
+  .keynote-venue {
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: right;
+    font-weight: 300;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--text-dark);
+    color: var(--warm-white);
+    padding: 80px 2rem;
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-section .section-label { color: var(--accent-light); }
+
+  .contact-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--warm-white);
+    margin: 1rem 0 1.5rem;
+  }
+
+  .contact-section p {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,253,249,0.65);
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-light {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid rgba(255,253,249,0.25);
+    color: var(--warm-white);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-light:hover { border-color: var(--accent-light); background: rgba(255,253,249,0.06); }
+
+  .btn-accent-light {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .btn-accent-light:hover { background: #9E5223; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    border-top: 1px solid rgba(255,253,249,0.08);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(255,253,249,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero > *:nth-child(2) { animation-delay: 0.15s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 100px 1.5rem 60px;
+    }
+
+    .hero-photo { max-width: 280px; }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .nav-links { display: none; }
+
+    .featured-card {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .keynote-item {
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+    }
+
+    .keynote-venue { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Victoria Kouyoumjian</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#interviews">Interviews</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#keynotes">Keynotes</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Product Marketing Executive</p>
+    <h1>Turning complex products into markets that move.</h1>
+    <p class="hero-desc">
+      Senior product marketing leader forged at AWS, Intel, Sprinklr, and GoDaddy.
+      I build the positioning, narratives, and GTM strategy that connect what companies build
+      to why buyers care.
+    </p>
+    <div class="hero-links">
+      <a href="https://linkedin.com/in/victoriakouyoumjian" target="_blank" class="btn-primary">LinkedIn</a>
+      <a href="#writing" class="btn-secondary">View Work</a>
+    </div>
+  </div>
+
+  <div class="hero-photo">
+    <div class="photo-frame" id="photoFrame">
+      <!-- Replace the placeholder below with: <img src="your-photo.jpg" alt="Victoria Kouyoumjian"> -->
+      <div class="photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="18" r="9" stroke="#B5622A" stroke-width="1.5"/>
+          <path d="M6 42c0-9.941 8.059-18 18-18s18 8.059 18 18" stroke="#B5622A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p>Add your photo</p>
+      </div>
+    </div>
+    <div class="photo-accent"></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">About</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>
+        I'm a product marketing executive with 20+ years of experience translating technically complex products
+        into differentiated positioning, compelling market narratives, and revenue-driving go-to-market programs.
+      </p>
+      <p>
+        My career spans some of the most consequential product launches in enterprise technology —
+        including the GA launch of Amazon SageMaker and Amazon Lex at AWS, Intel's Enterprise AI
+        go-to-market, and building Sprinklr's Platform PMM function from zero. I'm a rapid domain
+        learner with a track record of entering unfamiliar verticals and quickly developing
+        authoritative points of view.
+      </p>
+      <p>
+        I hold an MBA from the University of Redlands, a B.S. in Geography (GIS) from the
+        University of Wyoming, and a B.A. in English Literature from Mount Holyoke College.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">85+</div>
+        <div class="stat-label">Product & feature launches</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">6,700+</div>
+        <div class="stat-label">Developers reached, Intel AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Years in B2B tech marketing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- INTERVIEWS -->
+<section id="interviews">
+  <div class="section-header">
+    <span class="section-label">Interviews & Case Studies</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <a href="https://itechseries.com/interviews/mastering-product-gtm-success-with-victoria-kouyoumjian-from-intel/" target="_blank" class="featured-card">
+    <div>
+      <p class="featured-card-eyebrow">iTech Series · October 2024</p>
+      <h3 class="featured-card-title">Mastering Product Marketing GTM Success</h3>
+      <p class="featured-card-desc">An in-depth interview on product go-to-market strategy, enterprise AI positioning, and building PMM functions that drive revenue.</p>
+    </div>
+    <span class="featured-card-cta">Read interview →</span>
+  </a>
+
+  <a href="https://6887774.fs1.hubspotusercontent-na1.net/hubfs/6887774/Intel%20AI%20and%20Digitopia%20-%20Fueling%20Scalable%20AI%20Adoption%20with%20Data-Led%20Strategy.pdf" target="_blank" class="featured-card">
+    <div>
+      <p class="featured-card-eyebrow">Digitopia.co · July 2025</p>
+      <h3 class="featured-card-title">Fueling Scalable AI Adoption with a Data-Led Strategy</h3>
+      <p class="featured-card-desc">Intel AI customer story exploring how organizations can drive enterprise AI adoption through data strategy and organizational alignment.</p>
+    </div>
+    <span class="featured-card-cta">Read case study →</span>
+  </a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WEB CONTENT -->
+<section id="writing">
+  <div class="section-header">
+    <span class="section-label">Web Content & Product Pages</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="work-grid">
+
+    <a href="https://aws.amazon.com/sagemaker" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2017</span>
+      <h3 class="work-card-title">Amazon SageMaker — GA Launch</h3>
+      <p class="work-card-meta">Build, train, and deploy machine learning models at scale · November 2017</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://aws.amazon.com/lex" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2017</span>
+      <h3 class="work-card-title">Amazon Lex — GA Launch</h3>
+      <p class="work-card-meta">Conversational interfaces for your applications · April 2017</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://aws.amazon.com/quicksight/" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2016</span>
+      <h3 class="work-card-title">Amazon QuickSight — GA Launch</h3>
+      <p class="work-card-meta">Fast, easy-to-use business analytics · November 2016</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://aws.amazon.com/what-is-a-chatbot/" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2017</span>
+      <h3 class="work-card-title">What is a Chatbot?</h3>
+      <p class="work-card-meta">Evergreen explainer · October 2017</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://aws.amazon.com/chatbots-in-call-centers/" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2017</span>
+      <h3 class="work-card-title">Chatbots in Call Centers</h3>
+      <p class="work-card-meta">Industry use-case content · September 2017</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://www.sprinklr.com/features/ai-studio/" target="_blank" class="work-card">
+      <span class="work-card-tag">Sprinklr · 2022</span>
+      <h3 class="work-card-title">AI Studio — Product Page</h3>
+      <p class="work-card-meta">Sprinklr's first AI product launch · 2022</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://www.sprinklr.com/features/active-data-retention/" target="_blank" class="work-card">
+      <span class="work-card-tag">Sprinklr · 2021</span>
+      <h3 class="work-card-title">Active Data Retention — Product Page</h3>
+      <p class="work-card-meta">Sprinklr platform feature · 2021</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BLOGS -->
+<section id="blogs">
+  <div class="section-header">
+    <span class="section-label">Blogs & Articles</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="work-grid">
+
+    <a href="https://aws.amazon.com/blogs/machine-learning/author/vicisok/" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS ML Blog · 2017</span>
+      <h3 class="work-card-title">Machine Learning Blog Posts & Research Spotlight Series</h3>
+      <p class="work-card-meta">19 posts · February–September 2017</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="http://blogs.esri.com/esri/esri-insider/2012/05/07/whats-the-big-deal-about-big-data/" target="_blank" class="work-card">
+      <span class="work-card-tag">Esri Insider · 2012</span>
+      <h3 class="work-card-title">What's the Big Deal About Big Data?</h3>
+      <p class="work-card-meta">Esri Insider · May 2012</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="http://blogs.esri.com/esri/esri-insider/2012/02/14/private-clouds-your-on-ramp-to-the-future/" target="_blank" class="work-card">
+      <span class="work-card-tag">Esri Insider · 2012</span>
+      <h3 class="work-card-title">Private Clouds: Moving from Hype to Reality</h3>
+      <p class="work-card-meta">Esri Insider · February 2012</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="http://blogs.esri.com/esri/esri-insider/2011/10/24/open-source-closed-source-moving-to-the-middle/" target="_blank" class="work-card">
+      <span class="work-card-tag">Esri Insider · 2011</span>
+      <h3 class="work-card-title">Open Source, Closed Source: Moving to the Middle</h3>
+      <p class="work-card-meta">Esri Insider · October 2011</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="http://blogs.esri.com/esri/esri-insider/2011/08/04/the-future-of-mapping/" target="_blank" class="work-card">
+      <span class="work-card-tag">Esri Insider · 2011</span>
+      <h3 class="work-card-title">The Future of Mapping</h3>
+      <p class="work-card-meta">Esri Insider · August 2011</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- KEYNOTES -->
+<section id="keynotes">
+  <div class="section-header">
+    <span class="section-label">Keynotes & Speaking</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="keynotes-list">
+
+    <a href="https://www.youtube.com/watch?v=3m3GMt5f9zk" target="_blank" class="keynote-item">
+      <span class="keynote-year">2012</span>
+      <span class="keynote-title">ArcGIS in the Cloud</span>
+      <span class="keynote-venue">Esri International User Conference · San Diego, CA</span>
+    </a>
+
+    <div class="keynote-item" style="cursor: default;">
+      <span class="keynote-year">2011</span>
+      <span class="keynote-title">Esri India User Conference</span>
+      <span class="keynote-venue">Delhi, India</span>
+    </div>
+
+    <div class="keynote-item" style="cursor: default;">
+      <span class="keynote-year">2011</span>
+      <span class="keynote-title">ArcGIS in the Cloud</span>
+      <span class="keynote-venue">Esri Business Partner Conference · Palm Springs, CA</span>
+    </div>
+
+    <div class="keynote-item" style="cursor: default;">
+      <span class="keynote-year">2009</span>
+      <span class="keynote-title">Esri User Conference</span>
+      <span class="keynote-venue">San Diego, CA</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BOOKS & PUBLICATIONS -->
+<section id="books">
+  <div class="section-header">
+    <span class="section-label">Books & Publications</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <a href="https://a.co/d/9UWdrTY" target="_blank" class="featured-card">
+    <div>
+      <p class="featured-card-eyebrow">Esri Press · August 2008</p>
+      <h3 class="featured-card-title">The Business Benefits of GIS: An ROI Approach</h3>
+      <p class="featured-card-desc">Published by Esri Press. ISBN: 9781589482005. A practical guide to quantifying the return on investment of geographic information systems for business decision-makers.</p>
+    </div>
+    <span class="featured-card-cta">View on Amazon →</span>
+  </a>
+
+  <div class="work-grid">
+
+    <a href="http://www.esri.com/news/arcwatch/0612/esri-uc-forecast-100-percent-chance-of-cloud.html" target="_blank" class="work-card">
+      <span class="work-card-tag">ArcWatch · 2012</span>
+      <h3 class="work-card-title">ESRI User Conference Forecast: 100% Chance of Cloud</h3>
+      <p class="work-card-meta">ArcWatch · June 2012</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <div class="work-card" style="cursor: default;">
+      <span class="work-card-tag">Geospatial Today · 2012</span>
+      <h3 class="work-card-title">Moving from Public to Hybrid Cloud</h3>
+      <p class="work-card-meta">Geospatial Today · October 2012</p>
+    </div>
+
+    <div class="work-card" style="cursor: default;">
+      <span class="work-card-tag">GEO Informatics · 2011</span>
+      <h3 class="work-card-title">Esri and Cloud GIS Strategies</h3>
+      <p class="work-card-meta">GEO Informatics Magazine · Oct/Nov 2011</p>
+    </div>
+
+    <div class="work-card" style="cursor: default;">
+      <span class="work-card-tag">GeoConnection · 2011</span>
+      <h3 class="work-card-title">Demystifying the Cloud</h3>
+      <p class="work-card-meta">GeoConnection Magazine · March 2011</p>
+    </div>
+
+    <a href="http://www.esri.com/news/arcwatch/0110/feature.html" target="_blank" class="work-card">
+      <span class="work-card-tag">Esri Newsletter · 2010</span>
+      <h3 class="work-card-title">The New Age of Cloud Computing and GIS</h3>
+      <p class="work-card-meta">Esri Newsletter · January 2010</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SCREENCASTS -->
+<section id="screencasts">
+  <div class="section-header">
+    <span class="section-label">Screencasts & Video</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="work-grid">
+
+    <a href="https://drive.google.com/file/d/0BzAiBXRtjbvOZVVwR2U0c2loNGM/view?usp=sharing" target="_blank" class="work-card">
+      <span class="work-card-tag">AWS · 2016</span>
+      <h3 class="work-card-title">Introducing Amazon QuickSight</h3>
+      <p class="work-card-meta">Screencast & voice-over · November 2016</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1XsK39966Djz_m-jt5QEp8_xDPd8y-Pp3/view?usp=sharing" target="_blank" class="work-card">
+      <span class="work-card-tag">HP Cloud · 2014</span>
+      <h3 class="work-card-title">Welcome to the HP Public Cloud Console</h3>
+      <p class="work-card-meta">Recorded video · March 2014</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1U8JdEn-gvEpMVKqZgl8jeZHCyKys9UtL/view?usp=sharing" target="_blank" class="work-card">
+      <span class="work-card-tag">HP Cloud · 2014</span>
+      <h3 class="work-card-title">Transitioning to the New Cloud</h3>
+      <p class="work-card-meta">Recorded video · March 2014</p>
+      <svg class="work-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Get in touch</p>
+    <h2>Let's talk about what you're building.</h2>
+    <p>Whether you're looking for a product marketing leader or want to discuss a consulting engagement, I'd like to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:vicisok@gmail.com" class="btn-accent-light">Send an email</a>
+      <a href="https://linkedin.com/in/victoriakouyoumjian" target="_blank" class="btn-light">LinkedIn</a>
+      <a href="https://clinkerbrickgroup.com" target="_blank" class="btn-light">Clinker Brick Group</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Victoria Kouyoumjian · Product Marketing Executive</p>
+</footer>
+
+</body>
+</html>
+EOF
